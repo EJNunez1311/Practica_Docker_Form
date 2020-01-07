@@ -53,16 +53,18 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/","/css/**", "/js/**", "/actuator/**").permitAll() //permitiendo llamadas a esas urls.
                 .antMatchers("/dbconsole/**").permitAll()
-                .antMatchers("/admin/**").permitAll()
-                .antMatchers("/barcamp/**").permitAll()
+               // .antMatchers("/admin/**").permitAll()
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .antMatchers("/barcamp/**").hasAnyRole("ADMIN","USER")
                 .antMatchers(HttpMethod.POST, "/**").permitAll()
                 .antMatchers(HttpMethod.PUT, "/barcamp/**").permitAll()
                 .antMatchers(HttpMethod.PATCH, "/barcamp/**").permitAll()
                 .anyRequest().permitAll() //cualquier llamada debe ser validada
                 .and()
                 .formLogin()
-                .loginPage("/") //indicando la ruta que estaremos utilizando.
-                .failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina.
+                .loginPage("/login") //indicando que usario mi propio login no el que viene por defecto.
+                //.failureUrl("/login?error") //en caso de fallar puedo indicar otra pagina, esta url la utilizare para
+                // indicar cuando hay algun error en la aplicacion y mandare la pagina que aqui designe
                 .permitAll()
                 .and()
                 .logout()

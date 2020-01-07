@@ -30,14 +30,14 @@
                 <img src="/images/img-01.png" alt="IMG">
             </div>
 
-            <form role="form" action="/barcamp/form" method="POST" class="login100-form validate-form">
-					<span class="login100-form-title">
-						Member Login
-					</span>
+            <form role="form" action="/login" method="post" class="login100-form validate-form">
                 <#-- Linea para controlar el ataque csrf-->
                 <#if _csrf??> <#--validando que no sea nula, si lo es, está deshabilitado el csrf -->
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </#if>
+					<span class="login100-form-title">
+						Member Login
+					</span>
                 <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                     <input class="input100" type="text" name="username" placeholder="username" id="username" required autofocus>
                     <span class="focus-input100"></span>
@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button value="Sign In" class="login100-form-btn">
+                    <button type="submit" value="Sign In" class="login100-form-btn">
                         Login
                     </button>
                 </div>
@@ -76,9 +76,9 @@
                     </a>
                 </div>
             </form>
-            <#if error.isPresent()>
+           <#-- <#if error.isPresent()>
                 <p>usuario no existe....</p>
-            </#if>
+            </#if>-->
         </div>
     </div>
 </div>

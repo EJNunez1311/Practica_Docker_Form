@@ -31,7 +31,7 @@ public class AdminController {
         model.addObject("pregunta2", formRepo.sumpregunta2());
         model.addObject("pregunta3", formRepo.sumpregunta3());
 
-        System.out.println("Pregunta 1: "+ formRepo.sumpregunta1() +"Pregunta 2: " +formRepo.sumpregunta3());
+//        System.out.println("Pregunta 1: "+ formRepo.sumpregunta1() +"Pregunta 2: " +formRepo.sumpregunta3());
         model.setViewName("grafica");
         return model;
 
